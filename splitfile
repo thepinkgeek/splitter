@@ -1,0 +1,23 @@
+#!/usr/bin/python
+
+import sys
+import os
+
+SPLIT_COMMAND = "split"
+MKDIR_COMMAND = "mkdir"
+MOVE_COMMAND = "mv"
+DELETE_COMMAND = "rm"
+CHANGE_DIRECTORY_COMMAND = "cd"
+
+def main():
+    (this, filename) = sys.argv
+
+    split_directory = filename + ".dir"
+    change_dir = CHANGE_DIRECTORY_COMMAND + " " + split_directory
+    split_file = SPLIT_COMMAND + " -b 8 " + "../" + filename + " " + filename
+
+    os.system(MKDIR_COMMAND + " -p " + split_directory)
+    os.system(change_dir + " && " + split_file)
+
+if __name__ == "__main__":
+    main()
